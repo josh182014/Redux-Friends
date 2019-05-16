@@ -23,7 +23,10 @@ const reducer = (state = initialState, action) => {
             };
         case LOGIN_FAILED:
             console.log('Login Failed :( Nice try hacker', action.payload)
-            break;
+            return {
+                ...state,
+                isLoggingIn: false
+            }
         case FETCH_FRIENDS_START:
             console.log('fetching friends')
             return {
