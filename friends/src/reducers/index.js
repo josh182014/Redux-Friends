@@ -5,6 +5,7 @@ const initialState = {
     friends: [],
     isLoggingIn: false,
     isFindingFriends: false,
+    loginFailed: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -17,13 +18,15 @@ const reducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                isLoggingIn: false
+                isLoggingIn: false,
+                loginFailed: false
             };
         case LOGIN_FAILED:
             console.log('Login Failed :( Nice try hacker', action.payload)
             return {
                 ...state,
-                isLoggingIn: false
+                isLoggingIn: false,
+                loginFailed: 'Oops! User not found!'
             }
         case FETCH_FRIENDS_START:
             return {

@@ -27,6 +27,7 @@ class Login extends React.Component {
     }
 
     render() {
+        console.log('here', this.props)
         return (
             <div>
                 <form onSubmit={this.login}>
@@ -37,6 +38,7 @@ class Login extends React.Component {
                         autoComplete='off'
                         onChange={this.handleChanges}
                         value={this.state.username}
+                        required
                     />
                     <input
                         type='password'
@@ -45,6 +47,7 @@ class Login extends React.Component {
                         autoComplete='off'
                         onChange={this.handleChanges}
                         value={this.state.password}
+                        required
                     />
                     <button>
                     {this.props.isLoggingIn ? (
@@ -54,13 +57,15 @@ class Login extends React.Component {
                     )}
                     </button>
                 </form>
+                {!this.props.loginFailed === false && <p>{this.props.loginFailed}</p>}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    isLoggingIn: state.isLoggingIn
+    isLoggingIn: state.isLoggingIn,
+    loginFailed: state.loginFailed
 });
   
 export default connect(
