@@ -21,8 +21,6 @@ class Friends extends React.Component {
 
     render() {
         const newFriends = this.renderFriends()
-        console.log('new friends', newFriends)
-        console.log('in Friends.js',this.props.friends)
         return (
             <div>
                 <h3>My Friends!</h3>

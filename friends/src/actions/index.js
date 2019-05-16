@@ -13,11 +13,11 @@ export const login = creds => dispatch => {
     return axios
     .post('http://localhost:5000/api/login', creds)
     .then(res => {
-        console.log(res)
         localStorage.setItem('token', res.data.payload)
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
+        console.log(err)
         dispatch({ type: LOGIN_FAILED, payload: err})
     })
 }
@@ -27,7 +27,6 @@ export const findFriends = () => dispatch => {
     return axiosWithAuth()
     .post('http://localhost:5000/api/friends')
     .then(res => {
-        console.log(res)
         dispatch({ type: FETCH_FRIENDS_SUCCESS, payload: res.data });
     })
     .catch(err => {
