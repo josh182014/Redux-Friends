@@ -21,7 +21,9 @@ class Login extends React.Component {
 
     login = (e) => {
         e.preventDefault()
-        this.props.login(this.state.credentials)
+        this.props.login(this.state.credentials).then(() => {
+            this.props.history.push('/protected');
+        });
     }
 
     render() {
@@ -45,7 +47,11 @@ class Login extends React.Component {
                         value={this.state.password}
                     />
                     <button>
-                        Log In
+                    {this.props.isLoggingIn ? (
+                        '.......'
+                    ) : (
+                        'Log in'
+                    )}
                     </button>
                 </form>
             </div>
