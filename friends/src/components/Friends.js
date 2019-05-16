@@ -24,7 +24,8 @@ class Friends extends React.Component {
         return (
             <div>
                 <h3>My Friends!</h3>
-                {this.props.isFindingFriends === false && newFriends.length >0 && (
+                {this.props.isFindingFriends && 'Loading...' }
+                {!this.props.isFindingFriends && newFriends.length >0 && (
                     <div>
                     {newFriends.map(friend => (
                     <p>{friend.name}</p>
