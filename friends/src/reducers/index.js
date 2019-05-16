@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED } from "../actions";
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED, FETCH_FRIENDS_START, FETCH_FRIENDS_SUCCESS, FETCH_FRIENDS_FAILURE } from "../actions";
 
 
 const initialState = {
@@ -22,6 +22,15 @@ const reducer = (state = initialState, action) => {
             };
         case LOGIN_FAILED:
             console.log('Login Failed :( Nice try hacker', action.payload)
+            break;
+        case FETCH_FRIENDS_START:
+            console.log('fetching friends')
+        case FETCH_FRIENDS_SUCCESS:
+            console.log('friends fetched!', action.payload)
+            return {
+                ...state,
+                friends: action.payload
+            }
         default: 
             return state;
     }
