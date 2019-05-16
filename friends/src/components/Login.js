@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { login } from '../actions'
 
 class Login extends React.Component {
     state = {
@@ -9,25 +10,39 @@ class Login extends React.Component {
         }
     }
 
-    handleLogin = (e) => {
+    handleChanges = e => {
+        this.setState({
+          credentials: {
+            ...this.state.credentials,
+            [e.target.name]: e.target.value
+          }
+        });
+      };
+
+    login = (e) => {
         e.preventDefault()
+        this.props.login(this.state.credentials)
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={this.login}>
                     <input
                         type='text'
                         name='username'
                         placeholder='Username'
                         autoComplete='off'
+                        onChange={this.handleChanges}
+                        value={this.state.username}
                     />
                     <input
-                        type='text'
+                        type='password'
                         name='password'
                         placeholder='Password'
                         autoComplete='off'
+                        onChange={this.handleChanges}
+                        value={this.state.password}
                     />
                     <button>
                         Log In
@@ -38,4 +53,11 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+const mapStateToProps = state => ({
+    isLoggingIn: state.isLoggingIn
+});
+  
+export default connect(
+    mapStateToProps, 
+    { login }
+)(Login);
