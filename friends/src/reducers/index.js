@@ -3,7 +3,8 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILED, FETCH_FRIENDS_START, FETCH_FR
 
 const initialState = {
     friends: [],
-    isLoggingIn: false
+    isLoggingIn: false,
+    isFindingFriends: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,11 +26,16 @@ const reducer = (state = initialState, action) => {
             break;
         case FETCH_FRIENDS_START:
             console.log('fetching friends')
+            return {
+                ...state,
+                isFindingFriends: true
+            }
         case FETCH_FRIENDS_SUCCESS:
             console.log('friends fetched!', action.payload)
             return {
                 ...state,
-                friends: action.payload
+                friends: action.payload,
+                isFindingFriends: false
             }
         default: 
             return state;
